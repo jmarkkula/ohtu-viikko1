@@ -1,12 +1,6 @@
 package ohtu.ohtuvarasto;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -47,6 +41,43 @@ public class VarastoTest {
     }
 
     @Test
+    public void lisatessaNegEiTehdaMitaan() {
+        String aiempi = varasto.toString();
+        varasto.lisaaVarastoon(-8);
+
+        // pitäisi olla samoin kuin aiemmin
+        assertEquals(aiempi, varasto.toString());
+    }
+
+    @Test
+    public void lisatessaTasanTayteenSaldoTaysi() {
+        varasto.lisaaVarastoon(10);
+
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisatessaTasanTayteenMahtuminenNolla() {
+        varasto.lisaaVarastoon(10);
+
+        assertEquals(0, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisatessaYlenmaarinSaldoTaysi() {
+        varasto.lisaaVarastoon(100);
+
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisatessaYlenmaarinMahtuminenNolla() {
+        varasto.lisaaVarastoon(100);
+
+        assertEquals(0, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+
+    @Test
     public void ottaminenPalauttaaOikeanMaaran() {
         varasto.lisaaVarastoon(8);
 
@@ -66,13 +97,60 @@ public class VarastoTest {
     }
 
     @Test
+    public void negOttaminenEiTeeMitaan() {
+        varasto.lisaaVarastoon(8);
+        String aiempi = varasto.toString();
+        varasto.otaVarastosta(-1);
+
+        assertEquals(aiempi, varasto.toString());
+    }
+    
+        @Test
+    public void tasanKaikenOttaminenPalauttaaOikeanMaaran() {
+        varasto.lisaaVarastoon(8);
+        
+        double saatuMaara = varasto.otaVarastosta(8);
+
+        assertEquals(8, saatuMaara, vertailuTarkkuus);
+    }
+    
+            @Test
+    public void tasanKaikenOttaminenTyhjentaaTilan() {
+        varasto.lisaaVarastoon(8);
+        
+        varasto.otaVarastosta(8);
+
+        assertEquals(10, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    
+            @Test
+    public void ylenmaarinOttaminenPalauttaaOikeanMaaran() {
+        varasto.lisaaVarastoon(8);
+        
+        double saatuMaara = varasto.otaVarastosta(100);
+
+        assertEquals(8, saatuMaara, vertailuTarkkuus);
+    }
+    
+            @Test
+    public void ylenmaarinOttaminenTyhjentaaTilan() {
+        varasto.lisaaVarastoon(8);
+        
+        varasto.otaVarastosta(100);
+
+        assertEquals(10, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    
+    
+
+    @Test
     public void konstr() {
         varasto = new Varasto(-1);
         varasto = new Varasto(0);
-        varasto = new Varasto(1,1);
-        varasto = new Varasto(1,2);
-        varasto = new Varasto(-1,2);
-        varasto = new Varasto(-1,-1);
+        varasto = new Varasto(1, 1);
+        varasto = new Varasto(1, 2);
+        varasto = new Varasto(-1, 2);
+        varasto = new Varasto(-1, -1);
         varasto.toString();
     }
 }
