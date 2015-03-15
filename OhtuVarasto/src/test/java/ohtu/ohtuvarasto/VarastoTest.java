@@ -129,7 +129,7 @@ public class VarastoTest {
         
         double saatuMaara = varasto.otaVarastosta(100);
 
-        assertEquals(8, saatuMaara, vertailuTarkkuus);
+        assertEquals(80, saatuMaara, vertailuTarkkuus); //RIKOTTU 8->80
     }
     
             @Test
