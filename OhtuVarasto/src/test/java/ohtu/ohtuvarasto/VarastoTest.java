@@ -104,44 +104,42 @@ public class VarastoTest {
 
         assertEquals(aiempi, varasto.toString());
     }
-    
-        @Test
+
+    @Test
     public void tasanKaikenOttaminenPalauttaaOikeanMaaran() {
         varasto.lisaaVarastoon(8);
-        
+
         double saatuMaara = varasto.otaVarastosta(8);
 
         assertEquals(8, saatuMaara, vertailuTarkkuus);
     }
-    
-            @Test
+
+    @Test
     public void tasanKaikenOttaminenTyhjentaaTilan() {
         varasto.lisaaVarastoon(8);
-        
+
         varasto.otaVarastosta(8);
 
         assertEquals(10, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
-    
-            @Test
+
+    @Test
     public void ylenmaarinOttaminenPalauttaaOikeanMaaran() {
         varasto.lisaaVarastoon(8);
-        
+
         double saatuMaara = varasto.otaVarastosta(100);
 
-        assertEquals(8, saatuMaara, vertailuTarkkuus); 
+        assertEquals(8, saatuMaara, vertailuTarkkuus);
     }
-    
-            @Test
+
+    @Test
     public void ylenmaarinOttaminenTyhjentaaTilan() {
         varasto.lisaaVarastoon(8);
-        
+
         varasto.otaVarastosta(100);
 
         assertEquals(10, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
-    
-    
 
     @Test
     public void konstr() {
