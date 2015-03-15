@@ -138,7 +138,7 @@ public class VarastoTest {
         
         varasto.otaVarastosta(100);
 
-        assertEquals(10, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+        assertEquals(100, varasto.paljonkoMahtuu(), vertailuTarkkuus); //RIKOTTU
     }
     
     
